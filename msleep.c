@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_usleep.c                                        :+:      :+:    :+:   */
+/*   msleep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:33:02 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/10 17:06:17 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/10 19:28:20 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long	s_time(void)
+long	c_time(void)
 {
-	static	struct timeval start_time = {0, 0};
+	struct timeval start_time;
 
-	if (start_time.tv_sec == 0)
-		gettimeofday(&start_time, NULL);
+	gettimeofday(&start_time, NULL);
 	return (start_time.tv_sec * 1000 + start_time.tv_usec/1000);
 }
 
-long	ft_usleep(size_t time)
+long	*s_time(void)
 {
-	static struct timeval
+	static long	start = 0;
+
+	return (&start);
+}
+
+long	msleep(long time)
+{
+	long	 start;
+	long	curr;
+
+	start = c_time();
+	curr = c_time() - start;
+	while (curr < time)
+	{
+		curr = c_time() - start;
+		usleep(250);
+	}
+	return (-1);
 }

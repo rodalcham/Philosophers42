@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 16:02:22 by rchavez           #+#    #+#              #
-#    Updated: 2024/07/10 16:30:10 by rchavez          ###   ########.fr        #
+#    Updated: 2024/07/10 21:44:29 by rchavez@stu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=ADDRESS
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=ADDRESS
 
 O_FOLDER = OBJ
 
-SRC = philosophers.c
+SRC = philosophers.c msleep.c intro.c routine.c
 
 HEADER = philosophers.h
 
@@ -26,11 +26,11 @@ NAME = philosophers
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) $()
+$(NAME) : $(O_FOLDER) $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -pthread
 
-$(O_FOLDER)/%.o : %.c $(O_FOLDER)
-	$(CC) $(CFLAGS) $@ $^
+$(O_FOLDER)/%.o : %.c
+	$(CC) $(CFLAGS) -c -o $@ $^
 
 $(O_FOLDER) :
 	@if [ ! -d $(O_FOLDER) ]; then\
@@ -46,4 +46,7 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+run : all
+	./$(NAME)
+
+.PHONY : all clean fclean re run
