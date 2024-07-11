@@ -6,7 +6,7 @@
 /*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:33:02 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/10 19:28:20 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/11 07:24:07 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ long	msleep(long time)
 		curr = c_time() - start;
 		usleep(250);
 	}
-	return (-1);
+	return (0);
 }

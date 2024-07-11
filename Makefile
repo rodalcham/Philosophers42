@@ -6,7 +6,7 @@
 #    By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 16:02:22 by rchavez           #+#    #+#              #
-#    Updated: 2024/07/10 21:44:29 by rchavez@stu      ###   ########.fr        #
+#    Updated: 2024/07/11 07:20:29 by rchavez@stu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=ADDRESS
 
 O_FOLDER = OBJ
 
-SRC = philosophers.c msleep.c intro.c routine.c
+SRC = philosophers.c msleep.c intro.c routine.c utils.c
 
 HEADER = philosophers.h
 

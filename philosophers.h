@@ -6,7 +6,7 @@
 /*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/10 21:57:27 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/11 07:31:58 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@
 typedef struct	s_philo
 {
 	int				nbr;
-	long			last_meal;
 	int				meals;
 	int				forks[2];
+	long			last_meal;
+	long			params[5];
 	pthread_mutex_t	*mtx;
 }					t_philo;
 
@@ -39,6 +40,13 @@ long	msleep(long time);
 
 // My philo routine
 void	*routine(void *p);
+
+// Utils
+void	intro(void);
+void	philo_init(long c_time, t_philo	philo[], int philo_nbr);
+int		mtx_init(pthread_mutex_t *forks, t_philo philo[], int philo_nbr);
+int		mtx_destroy(pthread_mutex_t *forks, long philo_nbr);
+int		philo_start(pthread_t t_nbr[],  t_philo	philo[], int philo_nbr);
 
 // Fancy intro
 void	img1(void);
