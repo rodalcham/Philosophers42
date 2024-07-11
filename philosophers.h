@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/11 07:31:58 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/11 10:19:53 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ typedef struct	s_philo
 long	c_time(void);
 long	*s_time(void);
 long	msleep(long time);
+
+// Parsing
+int		parse(int argc, char **argv, t_philo p[]);
+void	print_params(long params[5]);
+int		usage(void);
 
 // My philo routine
 void	*routine(void *p);

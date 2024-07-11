@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intro.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:53:36 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/10 20:20:08 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/11 08:59:15 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ void	img5(void)
 	printf("░ ░   ░     ░░   ░ ░  ░  ░  \n          ░  ░  ░ ░      ░  ░    ░");
 	printf(" ░        ░      ░ ░            ░  ░  ░   ░  ░   ░           ░\n");
 	printf("\033[40G\033[31mA Project by \033]8;;https://github.com/rodalcha");
-	printf("m\archavez\033]8;;\a\033[0m\n\n\033[39GClick Here: → \033]8;;fil");
-	printf("e://readme.c\aReadMe\033]8;;\a ←\n\n");
-
+	printf("m\archavez\033]8;;\a\033[0m\n\n\033[39G");
+	printf("\033[39GClick Here: → \033]8;;file://./readme.c \aReadMe\033]8;;\a ←\n\n");
 }
 
 

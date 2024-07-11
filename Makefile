@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+         #
+#    By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 16:02:22 by rchavez           #+#    #+#              #
-#    Updated: 2024/07/11 07:20:29 by rchavez@stu      ###   ########.fr        #
+#    Updated: 2024/07/11 10:20:13 by rchavez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=ADDRESS
 
 O_FOLDER = OBJ
 
-SRC = philosophers.c msleep.c intro.c routine.c utils.c
+SRC = philosophers.c msleep.c intro.c routine.c utils.c parsing.c usage.c\
 
 HEADER = philosophers.h
 
@@ -47,6 +47,6 @@ fclean : clean
 re : fclean all
 
 run : all
-	./$(NAME)
+	./$(NAME) 42 200 42 42 42
 
 .PHONY : all clean fclean re run
