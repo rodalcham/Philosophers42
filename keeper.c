@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msleep.c                                           :+:      :+:    :+:   */
+/*   keeper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 16:33:02 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/15 19:10:18 by rchavez@stu      ###   ########.fr       */
+/*   Created: 2024/07/15 16:37:21 by rchavez@stu       #+#    #+#             */
+/*   Updated: 2024/07/15 18:58:16 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long	c_time(void)
+void	*keeper_routine(void	*philo)
 {
-	struct timeval start_time;
+	t_philo	*p;
+	int		i;
 
-	gettimeofday(&start_time, NULL);
-	return (start_time.tv_sec * 1000 + start_time.tv_usec/1000);
-}
-
-long	*s_time(void)
-{
-	static long	start = 0;
-
-	return (&start);
-}
-
-long	msleep(long time)
-{
-	long	 start;
-	long	curr;
-
-	start = c_time();
-	curr = c_time() - start;
-	while (curr < time)
+	p = (t_philo *)philo;
+	while (1)
 	{
-		curr = c_time() - start;
-		usleep(50);
+		i = 0;
+		while (++i <= p[0].params[0])
+		{
+			if (c_time() - p[i].last_meal >= p[0].params[1])
+			{
+				// printf("Time since last meal: %li\nTime to die: %li\n", p[i].last_meal - c_time(), p[0].params[1]);
+				pthread_mutex_lock(&p[0].mtx[0]);
+				printf("%li %i died\n", c_time() - *s_time(), i);
+				return (0);
+			}
+		}
 	}
-	return (0);
 }

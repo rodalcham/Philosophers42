@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/11 10:19:53 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/15 17:15:20 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,21 @@ long	*s_time(void);
 long	msleep(long time);
 
 // Parsing
-int		parse(int argc, char **argv, t_philo p[]);
-void	print_params(long params[5]);
 int		usage(void);
+void	print_params(long params[5]);
+int		parse(int argc, char **argv, t_philo p[]);
 
 // My philo routine
 void	*routine(void *p);
+void	*keeper_routine(void	*philo);
+void	print_msg(long p_nbr, char *msg, pthread_mutex_t *print);
 
 // Utils
 void	intro(void);
-void	philo_init(long c_time, t_philo	philo[], int philo_nbr);
-int		mtx_init(pthread_mutex_t *forks, t_philo philo[], int philo_nbr);
 int		mtx_destroy(pthread_mutex_t *forks, long philo_nbr);
-int		philo_start(pthread_t t_nbr[],  t_philo	philo[], int philo_nbr);
+void	philo_init(long c_time, t_philo	philo[], int philo_nbr);
+int		philo_start(pthread_t *t_nbr,  t_philo	philo[], int philo_nbr);
+int		mtx_init(pthread_mutex_t *forks, t_philo philo[], int philo_nbr);
 
 // Fancy intro
 void	img1(void);

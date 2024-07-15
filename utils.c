@@ -6,7 +6,7 @@
 /*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 07:16:37 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/11 07:33:20 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/15 16:08:51 by rchavez@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	philo_init(long c_time, t_philo	philo[], int philo_nbr)
 	while (++i <= philo_nbr)
 	{
 		philo[i].nbr = i;
-		philo->last_meal = c_time;
+		philo[i].last_meal = c_time;
 		philo[i].meals = 0;
 		if (i % 2)
 		{
@@ -83,7 +83,7 @@ int	mtx_destroy(pthread_mutex_t *forks, long philo_nbr)
 	return (0);
 }
 
-int	philo_start(pthread_t t_nbr[],  t_philo	philo[], int philo_nbr)
+int	philo_start(pthread_t *t_nbr, t_philo philo[], int philo_nbr)
 {
 	int	i;
 
