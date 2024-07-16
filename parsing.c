@@ -6,55 +6,11 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 08:05:31 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/16 10:44:55 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 14:18:18 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-int	ft_isdigit(int c)
-{
-	if (c > '9' || c < '0')
-		return (0);
-	return (1);
-}
-
-int	ft_isspace(int c)
-{
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
-		|| c == '\r')
-		return (1);
-	return (0);
-}
-
-long	ft_atoli(const char *str)
-{
-	size_t		i;
-	long int	x;
-	int			min;
-
-	i = 0;
-	x = 0;
-	min = 0;
-	if (!str)
-		return (0);
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			min++;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		x *= 10;
-		x += str[i++] - '0';
-	}
-	if (min > 0)
-		x *= -1;
-	return (x);
-}
 
 void	arr_cpy(long dst[], long src[], int size)
 {
@@ -65,6 +21,21 @@ void	arr_cpy(long dst[], long src[], int size)
 	{
 		dst[i] = src[i];
 	}
+}
+
+int	check_args(char **argv, t_philo p[])
+{
+	if (p[0].params[0] > PHILO_MAX || p[0].params[0] < 2)
+		return (-1);
+	if (p[0].params[1] < 1)
+		return (-1);
+	if (p[0].params[2] < 1 || p[0].params[2] > p[0].params[1])
+		return (-1);
+	if (p[0].params[3] < 1 || p[0].params[3] + p[0].params[2] > p[0].params[1])
+		return (-1);
+	if (p[0].params[4] < 1 && argv[5])
+		return (-1);
+	return (0);
 }
 
 int	parse(int argc, char **argv, t_philo p[])
@@ -78,15 +49,7 @@ int	parse(int argc, char **argv, t_philo p[])
 	p[0].params[2] = ft_atoli(argv[3]);
 	p[0].params[3] = ft_atoli(argv[4]);
 	p[0].params[4] = ft_atoli(argv[5]);
-	if (p[0].params[0] > PHILO_MAX || p[0].params[0] < 2)
-		return (-1);
-	if (p[0].params[1] < 1)
-		return (-1);
-	if (p[0].params[2] < 1 || p[0].params[2] > p[0].params[1])
-		return (-1);
-	if (p[0].params[3] < 1 || p[0].params[3] + p[0].params[2] > p[0].params[1])
-		return (-1);
-	if (p[0].params[4] < 1 && argv[5])
+	if (check_args(argv, p))
 		return (-1);
 	if (!argv[5])
 		p[0].params[4] = -1;

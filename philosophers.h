@@ -6,12 +6,12 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/16 11:39:13 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 14:16:12 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_C
-# define PHILOSOPHERS_C
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 # include <stdio.h>
 # include <string.h>
@@ -23,7 +23,7 @@
 # define PHILO_MAX 200
 
 // My philo struct
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				nbr;
 	int				forks[2];
@@ -40,6 +40,7 @@ long	msleep(long time);
 
 // Parsing
 int		usage(void);
+long	ft_atoli(const char *str);
 void	print_params(long params[5]);
 int		parse(int argc, char **argv, t_philo p[]);
 
@@ -52,9 +53,11 @@ int		print_msg(long p_nbr, char *msg, pthread_mutex_t *print);
 // Utils
 void	intro(void);
 void	philo_init(long c_time, t_philo	philo[], int philo_nbr);
-int		philo_start(pthread_t *t_nbr,  t_philo	philo[], int philo_nbr);
-int		mtx_destroy(pthread_mutex_t *forks, pthread_mutex_t *stat, long philo_nbr);
-int		mtx_init(pthread_mutex_t *forks, pthread_mutex_t *stat, t_philo philo[], int philo_nbr);
+int		philo_start(pthread_t *t_nbr, t_philo	philo[], int philo_nbr);
+int		mtx_destroy(pthread_mutex_t *forks,
+			pthread_mutex_t *stat, long philo_nbr);
+int		mtx_init(pthread_mutex_t *forks,
+			pthread_mutex_t *stat, t_philo philo[], int philo_nbr);
 
 // Fancy intro
 void	img1(void);

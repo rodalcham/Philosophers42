@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine->c                                          :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:44:10 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/15 18:49:34 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/16 14:13:01 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,36 @@ int	print_msg(long p_nbr, char *msg, pthread_mutex_t *print)
 	return (i);
 }
 
+void	philo_eat(t_philo *p)
+{
+	pthread_mutex_lock(&p->mtx[p->forks[0]]);
+	print_msg(p->nbr, "has taken a fork", &p->mtx[0]);
+	pthread_mutex_lock(&p->mtx[p->forks[1]]);
+	print_msg(p->nbr, "has taken a fork", &p->mtx[0]);
+	print_msg(p->nbr, "is eating", &p->mtx[0]);
+	pthread_mutex_lock(p->stat);
+	p->last_meal = c_time();
+	pthread_mutex_unlock(p->stat);
+	msleep(p->params[2]);
+	print_msg(p->nbr, "is sleeping", &p->mtx[0]);
+	pthread_mutex_unlock(&p->mtx[p->forks[1]]);
+	pthread_mutex_unlock(&p->mtx[p->forks[0]]);
+	msleep(p->params[3]);
+}
+
 void	*routine(void *philo)
 {
-	t_philo *p = (t_philo *)philo;
+	t_philo	*p;
 
-	if	(p->nbr % 2 == 0 || p->nbr == p->params[0])
+	p = (t_philo *)philo;
+	if (p->nbr % 2 == 0 || p->nbr == p->params[0])
 	{
 		print_msg(p->nbr, "is sleeping", &p->mtx[0]);
 		msleep(p->params[2]);
 	}
 	while (1)
 	{
-		pthread_mutex_lock(&p->mtx[p->forks[0]]);
-		print_msg(p->nbr, "has taken a fork", &p->mtx[0]);
-		pthread_mutex_lock(&p->mtx[p->forks[1]]);
-		print_msg(p->nbr, "has taken a fork", &p->mtx[0]);
-		print_msg(p->nbr, "is eating", &p->mtx[0]);
-		pthread_mutex_lock(p->stat);
-		p->last_meal = c_time();
-		pthread_mutex_unlock(p->stat);
-		msleep(p->params[2]);
-		print_msg(p->nbr, "is sleeping", &p->mtx[0]);
-		pthread_mutex_unlock(&p->mtx[p->forks[1]]);
-		pthread_mutex_unlock(&p->mtx[p->forks[0]]);
-		msleep(p->params[3]);
+		philo_eat(p);
 		if (print_msg(p->nbr, "is thinking", &p->mtx[0]))
 			break ;
 		msleep(p->params[5]);

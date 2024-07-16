@@ -6,7 +6,7 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 07:16:37 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/16 11:38:37 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 13:18:50 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	philo_init(long c_time, t_philo	philo[], int philo_nbr)
 	}
 }
 
-int	mtx_init(pthread_mutex_t *forks, pthread_mutex_t *stat, t_philo philo[], int philo_nbr)
+int	mtx_init(pthread_mutex_t *forks,
+	pthread_mutex_t *stat, t_philo philo[], int philo_nbr)
 {
 	int	i;
 
