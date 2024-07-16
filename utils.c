@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 07:16:37 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/15 16:08:51 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/16 11:38:37 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	philo_init(long c_time, t_philo	philo[], int philo_nbr)
 	{
 		philo[i].nbr = i;
 		philo[i].last_meal = c_time;
-		philo[i].meals = 0;
 		if (i % 2)
 		{
 			philo[i].forks[0] = i;
@@ -56,21 +55,24 @@ void	philo_init(long c_time, t_philo	philo[], int philo_nbr)
 	}
 }
 
-int	mtx_init(pthread_mutex_t *forks, t_philo philo[], int philo_nbr)
+int	mtx_init(pthread_mutex_t *forks, pthread_mutex_t *stat, t_philo philo[], int philo_nbr)
 {
 	int	i;
 
 	i = -1;
 	while (++i <= philo_nbr)
 	{
+		if (pthread_mutex_init(&stat[i], NULL) < 0)
+			return (-1);
 		if (pthread_mutex_init(&forks[i], NULL) < 0)
 			return (-1);
 		philo[i].mtx = forks;
+		philo[i].stat = &stat[i];
 	}
 	return (0);
 }
 
-int	mtx_destroy(pthread_mutex_t *forks, long philo_nbr)
+int	mtx_destroy(pthread_mutex_t *forks, pthread_mutex_t *stat, long philo_nbr)
 {
 	int	i;
 
@@ -78,6 +80,8 @@ int	mtx_destroy(pthread_mutex_t *forks, long philo_nbr)
 	while (++i <= philo_nbr)
 	{
 		if (pthread_mutex_destroy(&forks[i]) < 0)
+			return (-1);
+		if (pthread_mutex_destroy(&stat[i]) < 0)
 			return (-1);
 	}
 	return (0);

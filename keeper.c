@@ -6,7 +6,7 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:37:21 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/16 10:24:26 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 11:26:57 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*keeper_routine(void	*philo)
 		i = 0;
 		while (++i <= p[0].params[0])
 		{
+			pthread_mutex_lock(p[i].stat);
 			if (p[i].params[4])
 				alive++;
 			if (c_time() - p[i].last_meal >= p[0].params[1] && p[i].params[4] != 0)
@@ -34,8 +35,10 @@ void	*keeper_routine(void	*philo)
 				printf("%li %i \033[1m\033[31mdied\033[0m\n\n", c_time() - *s_time(), i);
 				*get_run() = 0;
 				pthread_mutex_unlock(&p[0].mtx[0]);
+				pthread_mutex_unlock(p[i].stat);
 				return (0);
 			}
+			pthread_mutex_unlock(p[i].stat);
 		}
 	}
 	return (NULL);

@@ -57,7 +57,9 @@ void	*routine(void *philo)
 		pthread_mutex_lock(&p->mtx[p->forks[1]]);
 		print_msg(p->nbr, "has taken a fork", &p->mtx[0]);
 		print_msg(p->nbr, "is eating", &p->mtx[0]);
+		pthread_mutex_lock(p->stat);
 		p->last_meal = c_time();
+		pthread_mutex_unlock(p->stat);
 		msleep(p->params[2]);
 		print_msg(p->nbr, "is sleeping", &p->mtx[0]);
 		pthread_mutex_unlock(&p->mtx[p->forks[1]]);
@@ -66,8 +68,10 @@ void	*routine(void *philo)
 		if (print_msg(p->nbr, "is thinking", &p->mtx[0]))
 			break ;
 		msleep(p->params[5]);
+		pthread_mutex_lock(p->stat);
 		if (p->params[4] > 0)
 			p->params[4]--;
+		pthread_mutex_unlock(p->stat);
 		if (p->params[4] == 0)
 			break ;
 	}

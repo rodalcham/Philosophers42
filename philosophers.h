@@ -6,7 +6,7 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/16 09:53:28 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 11:39:13 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 typedef struct	s_philo
 {
 	int				nbr;
-	int				meals;
 	int				forks[2];
 	long			last_meal;
 	long			params[6];
 	pthread_mutex_t	*mtx;
+	pthread_mutex_t	*stat;
 }					t_philo;
 
 // My time functions
@@ -51,10 +51,10 @@ int		print_msg(long p_nbr, char *msg, pthread_mutex_t *print);
 
 // Utils
 void	intro(void);
-int		mtx_destroy(pthread_mutex_t *forks, long philo_nbr);
 void	philo_init(long c_time, t_philo	philo[], int philo_nbr);
 int		philo_start(pthread_t *t_nbr,  t_philo	philo[], int philo_nbr);
-int		mtx_init(pthread_mutex_t *forks, t_philo philo[], int philo_nbr);
+int		mtx_destroy(pthread_mutex_t *forks, pthread_mutex_t *stat, long philo_nbr);
+int		mtx_init(pthread_mutex_t *forks, pthread_mutex_t *stat, t_philo philo[], int philo_nbr);
 
 // Fancy intro
 void	img1(void);
