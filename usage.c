@@ -6,7 +6,7 @@
 /*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 19:34:19 by rchavez@stu       #+#    #+#             */
-/*   Updated: 2024/07/11 10:31:45 by rchavez          ###   ########.fr       */
+/*   Updated: 2024/07/16 10:39:37 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_params(long params[5])
 	printf("\033[33G\033[1m\033[31m%li", params[1]);
 	printf("\033[49G\033[1m\033[31m%li", params[2]);
 	printf("\033[66G\033[1m\033[31m%li", params[3]);
-	printf("\033[85G\033[1m\033[31m%li\n\033[0m", params[4]);
+	printf("\033[85G\033[1m\033[31m%li\n\n\033[0m", params[4]);
 	msleep(500);
 }
 
@@ -36,7 +36,7 @@ void	usage2(void)
 	printf("════════════╝ ╚═════════════════╝\n               ┊        ┊ ┊  ");
 	printf("           ┊ ┊             ┊ ┊               ┊ ┊    <optional>  ");
 	printf(" ┊\n               ┊        ┊ ┊             ┊ ┊             ┊ ┊ ");
-	printf("              ┊ ┊                 ┊\n      MIN      ┊    1   ┊ ┊");
+	printf("              ┊ ┊                 ┊\n      MIN      ┊    2   ┊ ┊");
 	printf(" eat + sleep ┊ ┊      1      ┊ ┊       1       ┊ ┊        1     ");
 	printf("   ┊\n               ┊        ┊ ┊             ┊ ┊             ┊ ");
 	printf("┊               ┊ ┊                 ┊\n               ┊        ┊");

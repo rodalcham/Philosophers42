@@ -2,3 +2,4 @@
 *.o
 OBJ
 philosophers
+Lazy*

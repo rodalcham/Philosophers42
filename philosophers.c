@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:16 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/15 17:16:02 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/16 10:25:12 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	mtx_destroy(forks, philo[0].params[0]);
+	printf("\n");
 }

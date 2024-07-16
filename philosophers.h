@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchavez@student.42heilbronn.de <rchavez    +#+  +:+       +#+        */
+/*   By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:21:28 by rchavez           #+#    #+#             */
-/*   Updated: 2024/07/15 17:15:20 by rchavez@stu      ###   ########.fr       */
+/*   Updated: 2024/07/16 09:53:28 by rchavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_philo
 	int				meals;
 	int				forks[2];
 	long			last_meal;
-	long			params[5];
+	long			params[6];
 	pthread_mutex_t	*mtx;
 }					t_philo;
 
@@ -44,9 +44,10 @@ void	print_params(long params[5]);
 int		parse(int argc, char **argv, t_philo p[]);
 
 // My philo routine
+int		*get_run(void);
 void	*routine(void *p);
 void	*keeper_routine(void	*philo);
-void	print_msg(long p_nbr, char *msg, pthread_mutex_t *print);
+int		print_msg(long p_nbr, char *msg, pthread_mutex_t *print);
 
 // Utils
 void	intro(void);
