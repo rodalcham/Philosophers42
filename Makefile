@@ -6,7 +6,7 @@
 #    By: rchavez <rchavez@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 16:02:22 by rchavez           #+#    #+#              #
-#    Updated: 2024/07/16 14:15:27 by rchavez          ###   ########.fr        #
+#    Updated: 2024/07/16 16:02:18 by rchavez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ clean :
 	fi
 
 fclean : clean
+	rm -f $(NAME) 
 
 re : fclean all
 
