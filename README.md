@@ -1,6 +1,6 @@
 # Philosophers
 
-A 42 school project by **_@rchavez_**
+A 42 school project
 
 You’ve just been hired by a reclusive and rather eccentric scientist, notorious for his unorthodox experiments.<br>
 This time, he has outdone himself by kidnapping a group of philosophers and subjecting them to <br>
